@@ -1,3 +1,14 @@
 {
-  "endpoint": "http://clientsettings.api.roblox.com/Setting/QuietGet/ClientAppSettings?apiKey=D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79"
+  "endpoint": "http://clientsettings.api.roblox.com/Setting/QuietGet/SERIES?apiKey=D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79",
+
+  "series": [
+    "ClientAppSettings",
+    "MacClientAppSettings",
+    "StudioAppSettings",
+    "WindowsBootstrapperSettings",
+    "MacBootstrapperSettings",
+    "AndroidAppSettings",
+    "iOSAppSettings",
+    "XboxAppSettings"
+  ]
 }

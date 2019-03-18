@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
-import { getFlags, Flag } from '../api'
+import { getFlags, Flag, allSeries } from '../api'
 import { LinearProgress } from '@material-ui/core'
+import { FFlagTableProps } from './FFlagTable'
+
+export interface FFlagDataCallbacks {
+  refresh: () => any
+  setSeries: (series: string) => any
+}
 
 interface FFlagDataProps {
-  children: ({ flags, refresh }: {flags: Flag[], refresh: () => any}) => JSX.Element
+  children: (options: FFlagTableProps & FFlagDataCallbacks) => JSX.Element
 }
 
 interface FFlagDataState {
   flags?: Flag[]
+  series: string
 }
 
 export default class FFlagData extends Component<FFlagDataProps, FFlagDataState> {
   constructor (props: FFlagDataProps) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      series: allSeries[0]
+    }
   }
 
   async componentDidMount () {
@@ -24,10 +33,10 @@ export default class FFlagData extends Component<FFlagDataProps, FFlagDataState>
   async getData () {
     this.setState({
       flags: undefined
-    })
-
-    this.setState({
-      flags: await getFlags()
+    }, async () => {
+      this.setState({
+        flags: await getFlags(this.state.series)
+      })
     })
   }
 
@@ -38,7 +47,9 @@ export default class FFlagData extends Component<FFlagDataProps, FFlagDataState>
           this.state.flags
             ? this.props.children({
               flags: this.state.flags,
-              refresh: () => this.getData()
+              series: this.state.series,
+              refresh: () => this.getData(),
+              setSeries: (series) => this.setState({ series }, this.getData)
             })
             : (
               <LinearProgress style={{

@@ -3,20 +3,27 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import MUIDataTable from 'mui-datatables'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Moment from 'react-moment'
-import { Flag } from '../api'
+import { Flag, allSeries } from '../api'
 import { getFlagType } from '../Util'
 import FFlagTypeChip from './FFlagTypeChip'
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@material-ui/core/Link'
+import { FFlagDataCallbacks } from './FFlagData'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import InputLabel from '@material-ui/core/InputLabel'
+import Input from '@material-ui/core/Input'
 
-interface FFlagTableProps {
+export interface FFlagTableProps {
   flags: Flag[]
-  refresh: () => any
+  series: string
 }
 
-const columns = [
+const columns = (props: FFlagTableProps) => [
   {
     name: 'Type',
     options: {
@@ -32,7 +39,7 @@ const columns = [
       customBodyRender: (flag: string) => (
         <Link
           component={
-            (props: any) => <RouterLink to={`/history/${flag}`} {...props} />
+            (p: any) => <RouterLink to={`/history/${props.series}/${flag}`} {...p} />
           }
           color='inherit'
           underline='none'
@@ -89,11 +96,11 @@ const columns = [
   }
 ]
 
-export default class FFlagTable extends Component<FFlagTableProps> {
+export default class FFlagTable extends Component<FFlagTableProps & FFlagDataCallbacks> {
   render () {
     return (
       <MUIDataTable
-        title='Flags'
+        title='Fast Flags'
         data={this.props.flags.map(flag => {
           const { type } = getFlagType(flag.flag)
 
@@ -102,10 +109,10 @@ export default class FFlagTable extends Component<FFlagTableProps> {
             flag.flag,
             flag.flag,
             flag.currentValue || '',
-            flag.lastUpdated || ''
+            flag.lastUpdated ? new Date(flag.lastUpdated).toISOString() : ''
           ]
         })}
-        columns={columns as any}
+        columns={columns(this.props) as any}
         options={{
           selectableRows: false,
           rowsPerPage: 30,
@@ -113,9 +120,27 @@ export default class FFlagTable extends Component<FFlagTableProps> {
           print: false,
           filterType: 'multiselect',
           customToolbar: () => (
-            <IconButton onClick={this.props.refresh}>
-              <RefreshIcon />
-            </IconButton>
+            <Fragment>
+              <IconButton onClick={this.props.refresh}>
+                <RefreshIcon />
+              </IconButton>
+              <FormControl style={{
+                marginLeft: 10
+              }}>
+                <InputLabel htmlFor='series'>Platform/Application</InputLabel>
+                <Select
+                  value={this.props.series}
+                  onChange={(e) => this.props.setSeries(e.target.value)}
+                  input={
+                    <Input name='series' id='series' />
+                  }
+                >
+                {allSeries.map((series) => (
+                  <MenuItem value={series}>{series}</MenuItem>
+                ))}
+                </Select>
+              </FormControl>
+            </Fragment>
           )
         }}
       />

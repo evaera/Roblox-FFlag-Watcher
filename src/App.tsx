@@ -36,7 +36,7 @@ const pages: Page[] = [
     title: 'Browser'
   },
   {
-    path: '/history/:flag?',
+    path: '/history/:series?/:flag?',
     activePath: '/history',
     component: History,
     title: 'History'

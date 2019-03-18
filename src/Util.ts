@@ -1,7 +1,7 @@
 const flagTypes = {
   FFlag: 'Flag',
   DFFlag: 'Dynamic Flag',
-  SFFlag: 'Studio Flag',
+  SFFlag: 'Synced Flag',
   FInt: 'Int',
   FString: 'String',
   FLog: 'Log',

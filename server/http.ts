@@ -1,7 +1,7 @@
 import fastify from 'fastify'
 import fastifyCors from 'fastify-cors'
 import { database } from './db'
-import { HistoryEvent, parseFlags } from './parser'
+import { HistoryEvent, parseFlags, allSeries } from './parser'
 
 const app = fastify({ logger: true })
 
@@ -9,17 +9,27 @@ app.register(fastifyCors, {
   origin: '*'
 })
 
-app.get('/flags', async () => {
+app.get('/flags/:series', {
+  schema: {
+    params: {
+      series: {
+        type: 'string',
+        enum: allSeries
+      }
+    }
+  }
+}, async (request, reply) => {
   const db = await database
 
-  await parseFlags()
+  await parseFlags(request.params.series)
 
   return db.collection('flags').aggregate([
     {
       $match: {
         currentValue: {
           $exists: true
-        }
+        },
+        series: request.params.series
       }
     },
     {

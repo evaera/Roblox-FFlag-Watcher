@@ -4,6 +4,15 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 
 const endpoint = (str: string) => BASE_URL + str
 
+export const allSeries = [
+  'ClientAppSettings',
+  'StudioAppSettings',
+  'WindowsBootstrapperSettings',
+  'AndroidAppSettings',
+  'iOSAppSettings',
+  'XboxAppSettings'
+]
+
 export enum HistoryEventType {
   Created = 'Created',
   Removed = 'Removed',
@@ -23,6 +32,6 @@ export interface HistoryEvent {
   value?: string
 }
 
-export async function getFlags (): Promise<Flag[]> {
-  return (await fetch(endpoint('flags'))).json()
+export async function getFlags (series: string): Promise<Flag[]> {
+  return (await fetch(endpoint(`flags/${series}`))).json()
 }
