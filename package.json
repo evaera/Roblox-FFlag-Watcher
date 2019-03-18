@@ -34,7 +34,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build -b build -m \"Automated build\"",
-    "server:build": "tsc",
+    "server:build": "tsc -p server",
     "server:watch": "tsc-watch -p server --onSuccess \"yarn server:start\"",
     "server:start": "node dist/index.js",
     "server:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build"
