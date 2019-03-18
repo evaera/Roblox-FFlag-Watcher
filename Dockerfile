@@ -10,5 +10,4 @@ COPY yarn.lock ./
 RUN yarn install
 COPY server ./server
 RUN yarn server:build
-RUN yarn build
 CMD [ 'yarn' 'server:start' ]
