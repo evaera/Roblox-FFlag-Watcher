@@ -27,4 +27,3 @@ volumes:
 networks:
   app:
     external: false
-    name: app
