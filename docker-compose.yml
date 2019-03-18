@@ -8,6 +8,8 @@ services:
       - '27017'
     volumes:
       - 'data-volume:/data/db'
+    networks:
+      - app
 
   app:
     build: .
@@ -16,5 +18,13 @@ services:
     environment:
       - MONGO_DB=mongodb://mongo:27017
       - NODE_ENV=production
+    networks:
+      - app
+
 volumes:
   data-volume:
+
+networks:
+  app:
+    external: false
+    name: app
