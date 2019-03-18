@@ -9,5 +9,5 @@ COPY package.json ./
 COPY yarn.lock ./
 RUN yarn install
 COPY server ./server
-RUN tsc
+RUN yarn server:build
 ENTRYPOINT ["yarn", "server:start"]
