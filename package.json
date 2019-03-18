@@ -3,20 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
     "@types/jest": "24.0.11",
     "@types/node": "11.11.3",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
+    "fast-memoize": "^2.5.1",
+    "fastify": "^2.1.0",
+    "fastify-cors": "^2.1.2",
+    "moment": "^2.24.0",
+    "mongodb": "^3.1.13",
+    "mui-datatables": "^2.0.0-beta.58",
+    "node-fetch": "^2.3.0",
+    "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-moment": "^0.8.4",
+    "react-router-dom": "^4.4.0",
     "react-scripts": "2.1.8",
+    "tsc-watch": "^2.1.2",
+    "tslint": "^5.14.0",
     "typescript": "3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server:build": "tsc",
+    "server:watch": "tsc-watch -p server --onSuccess \"yarn server:start\"",
+    "server:start": "node dist/index.js",
+    "server:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -26,5 +44,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@types/lowdb": "^1.0.7",
+    "@types/mongodb": "^3.1.22",
+    "@types/mui-datatables": "^2.0.6",
+    "@types/node-fetch": "^2.1.6",
+    "@types/react-router-dom": "^4.3.1",
+    "tslint-config-standard": "^8.0.1"
+  }
 }

@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    expose:
+      - '27017'
+    volumes:
+      - 'data-volume:/data/db'
+
+  app:
+    build: .
+    ports:
+      - '8080:8080'
+    environment:
+      - MONGO_DB=mongodb://mongo:27017
+      - NODE_ENV=production
+volumes:
+  data-volume:

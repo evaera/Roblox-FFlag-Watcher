@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "esnext",
+		"noImplicitAny": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+		"sourceMap": true,
+		"outDir": "../dist",
+		"lib": [
+			"es2015",
+      "es2017",
+      "es2018",
+      "esnext"
+		]
+	},
+	"include": [
+		"./**/*"
+	]
+}

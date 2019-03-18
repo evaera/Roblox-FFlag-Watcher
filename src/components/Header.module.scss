@@ -1,0 +1,7 @@
+.header {
+  margin-bottom: 50px;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 0;
+  }
+}
