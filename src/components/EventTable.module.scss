@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid: 1fr 1fr / auto auto;
+  grid-template-areas: "left right";
+  grid-gap: 20px;
+  padding: 20px;
+
+  @media screen and (max-width: 960px) {
+    grid-template-areas: "left left" "right right";
+    grid-gap: 0;
+    padding: 0;
+  }
+}
+
+.left {
+  grid-area: left;
+}
+
+.right {
+  grid-area: right;
+}

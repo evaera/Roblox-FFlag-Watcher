@@ -24,7 +24,7 @@ export const theme = createMuiTheme({
 
 export interface Page {
   path: string,
-  component: () => JSX.Element,
+  component: (...args: any[]) => JSX.Element,
   title: string
   activePath?: string
 }

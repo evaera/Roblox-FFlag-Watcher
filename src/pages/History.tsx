@@ -1,8 +1,18 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import EventTable from '../components/EventTable'
+import { match } from 'react-router-dom'
 
-export default function History () {
-  return <Typography style={{
-    padding: 100
-  }}>Coming Soon</Typography>
+interface HistoryParams {
+  series?: string
+  flag?: string
+}
+
+export default function History ({ match }: { match: match<HistoryParams> }) {
+  return (
+    <EventTable
+      series={match.params.series}
+      flag={match.params.flag}
+      key={`${match.params.series}:${match.params.flag}`}
+    />
+  )
 }
