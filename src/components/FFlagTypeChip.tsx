@@ -17,6 +17,7 @@ import memoize from 'fast-memoize'
 const typeStyles: [string, typeof blue, JSX.Element][] = [
   ['Dynamic Int', red, <LooksOne />],
   ['Dynamic String', red, <TextFormat />],
+  ['Dynamic Log', red, <List />],
   ['Int', indigo, <LooksOne />],
   ['Log', indigo, <List />],
   ['String', indigo, <TextFormat />],

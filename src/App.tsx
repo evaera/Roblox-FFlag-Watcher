@@ -6,6 +6,7 @@ import './App.css'
 import Header from './components/Header'
 import Browser from './pages/Browser'
 import History from './pages/History'
+import About from './pages/About'
 
 export const theme = createMuiTheme({
   typography: {
@@ -40,6 +41,11 @@ const pages: Page[] = [
     activePath: '/history',
     component: History,
     title: 'History'
+  },
+  {
+    path: '/about',
+    component: About,
+    title: 'About'
   }
 ]
 
