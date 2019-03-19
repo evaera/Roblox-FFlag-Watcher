@@ -12,6 +12,8 @@ import FFlagTextLink from './FFlagTextLink'
 import LifecycleChip from './LifecycleChip'
 import Utterances from './Utterances'
 import styles from './EventTable.module.scss'
+import FFlagTypeChip from './FFlagTypeChip'
+import { getFlagType } from '../Util'
 
 interface EventTableProps {
   series?: string
@@ -36,12 +38,27 @@ const columns = (single: boolean) => [
     }
   },
   {
+    name: 'Type',
+    options: {
+      customBodyRender: FFlagTypeChip,
+      download: false,
+      display: !single
+    }
+  },
+  {
     name: 'Flag',
     options: {
       display: !single,
       customBodyRender: (flag: string, meta: any) => (
         FFlagTextLink(flag, meta.rowData[1])
-      )
+      ),
+      download: false
+    }
+  },
+  {
+    name: 'Full Name',
+    options: {
+      display: false
     }
   },
   {
@@ -132,6 +149,8 @@ export default class EventTable extends Component<EventTableProps, EventTableSta
                 data={this.state.events.map(event => [
                   event.type,
                   event.series,
+                  getFlagType(event.flag).type,
+                  event.flag,
                   event.flag,
                   event.value || '',
                   event.time
