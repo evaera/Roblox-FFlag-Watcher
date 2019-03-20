@@ -32,7 +32,7 @@ export interface HistoryEvent {
 
 const getFirstEvent = memoize(
   async (): Promise<HistoryEvent | null> => (
-    (await database).collection('history').find().limit(1).sort({ time: -1 }).next()
+    (await database).collection('history').find().limit(1).sort({ time: 1 }).next()
   )
 )
 
