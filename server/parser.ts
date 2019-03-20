@@ -85,7 +85,12 @@ export async function parseFlags (series: string) {
         time: Date.now(),
         type: HistoryEventType.Changed
       })
-    } else if (await db.collection('history').find({ flag, series }).count() === 0) {
+    }
+
+    if (
+      process.env.RETROACTIVE_TRACKING
+      && await db.collection('history').find({ flag, series }).count() === 0
+    ) {
       const firstEvent = await getFirstEvent()
       await db.collection('history').insertOne({
         series,
