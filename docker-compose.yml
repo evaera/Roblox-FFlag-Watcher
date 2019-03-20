@@ -11,6 +11,7 @@ services:
 
   app:
     build: .
+    restart: always
     depends_on:
       - mongo
     ports:
