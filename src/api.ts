@@ -8,8 +8,10 @@ const endpoint = (str: string) => BASE_URL + str
 
 export const allSeries = [
   'ClientAppSettings',
+  'MacClientAppSettings',
   'StudioAppSettings',
   'WindowsBootstrapperSettings',
+  'MacBootstrapperSettings',
   'AndroidAppSettings',
   'iOSAppSettings',
   'XboxAppSettings'
