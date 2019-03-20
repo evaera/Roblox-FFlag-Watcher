@@ -1,7 +1,7 @@
 import fastify from 'fastify'
 import fastifyCors from 'fastify-cors'
 import { database } from './db'
-import { HistoryEvent, parseFlags, allSeries } from './parser'
+import { HistoryEvent, parseFlags, allSeries, HistoryEventType } from './parser'
 
 const app = fastify({ logger: true })
 
@@ -42,6 +42,13 @@ app.get('/flags/:series', {
             $match: {
               $expr: {
                 $eq: [ '$flag', '$$flag' ]
+              }
+            }
+          },
+          {
+            $match: {
+              type: {
+                $ne: HistoryEventType.TrackingBegan
               }
             }
           },

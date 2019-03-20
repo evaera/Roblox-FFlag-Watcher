@@ -1,6 +1,7 @@
 import { database } from './db'
 import fetch from 'node-fetch'
 import * as config from './config.json'
+import memoize from 'fast-memoize'
 
 interface Flags {
   [index: string]: string
@@ -11,7 +12,8 @@ export const allSeries = config.series
 export enum HistoryEventType {
   Created = 'Created',
   Removed = 'Removed',
-  Changed = 'Changed'
+  Changed = 'Changed',
+  TrackingBegan = 'Tracking Began'
 }
 
 export interface Flag {
@@ -27,6 +29,12 @@ export interface HistoryEvent {
   series: string
   value?: string
 }
+
+const getFirstEvent = memoize(
+  async (): Promise<HistoryEvent | null> => (
+    (await database).collection('history').find().limit(1).sort({ time: -1 }).next()
+  )
+)
 
 export function parseAllFlags () {
   return Promise.all(config.series.map(series => parseFlags(series)))
@@ -48,7 +56,6 @@ export async function parseFlags (series: string) {
         time: Date.now(),
         type: HistoryEventType.Removed
       })
-      console.log('removed', flag)
 
       await db.collection('flags').updateOne({ series, flag: flag.flag }, {
         $unset: {
@@ -70,7 +77,6 @@ export async function parseFlags (series: string) {
         time: Date.now(),
         type: HistoryEventType.Created
       })
-      console.log('created', flag)
     } else if (currentFlag.currentValue !== value) {
       await db.collection('history').insertOne({
         series,
@@ -79,7 +85,15 @@ export async function parseFlags (series: string) {
         time: Date.now(),
         type: HistoryEventType.Changed
       })
-      console.log('changed', flag)
+    } else if (await db.collection('history').find({ flag, series }).count() === 0) {
+      const firstEvent = await getFirstEvent()
+      await db.collection('history').insertOne({
+        series,
+        flag,
+        value,
+        time: firstEvent ? firstEvent.time : Date.now(),
+        type: HistoryEventType.TrackingBegan
+      })
     }
 
     return db.collection('flags').updateOne({ flag, series }, {
