@@ -14,7 +14,8 @@ export const allSeries = [
   'MacBootstrapperSettings',
   'AndroidAppSettings',
   'iOSAppSettings',
-  'XboxAppSettings'
+  'XboxAppSettings',
+  'RCCService'
 ]
 
 export enum HistoryEventType {

@@ -9,6 +9,10 @@ interface Flags {
 
 export const allSeries = config.series
 
+if (process.env.RCCServiceEndpoint) {
+  allSeries.push('RCCService')
+}
+
 export enum HistoryEventType {
   Created = 'Created',
   Removed = 'Removed',
@@ -41,7 +45,11 @@ export function parseAllFlags () {
 }
 
 export async function parseFlags (series: string) {
-  const request = await fetch(config.endpoint.replace('SERIES', series))
+  const request = await fetch(
+    series === 'RCCService'
+      ? process.env.RCCServiceEndpoint!
+      : config.endpoint.replace('SERIES', series)
+  )
 
   const flags = await request.json() as Flags
 
@@ -85,18 +93,14 @@ export async function parseFlags (series: string) {
         time: Date.now(),
         type: HistoryEventType.Changed
       })
-    }
-
-    if (
-      process.env.RETROACTIVE_TRACKING
-      && await db.collection('history').find({ flag, series }).count() === 0
+    } else if (
+      await db.collection('history').find({ flag, series }).count() === 0
     ) {
-      const firstEvent = await getFirstEvent()
       await db.collection('history').insertOne({
         series,
         flag,
         value,
-        time: firstEvent ? firstEvent.time : Date.now(),
+        time: Date.now(),
         type: HistoryEventType.TrackingBegan
       })
     }
