@@ -48,8 +48,8 @@ const stripUndefined = (obj: {[index: string]: any}) => {
   return obj
 }
 
-export async function getFlags (series: string): Promise<Flag[]> {
-  return (await fetch(endpoint(`flags/${series}`))).json()
+export async function getFlags (series: string, fresh?: boolean): Promise<Flag[]> {
+  return (await fetch(endpoint(`flags/${series}${fresh ? '?fresh=true' : ''}`))).json()
 }
 
 export async function getHistory (series?: string, flag?: string): Promise<HistoryEvent[]> {

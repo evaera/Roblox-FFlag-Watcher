@@ -18,10 +18,12 @@ app.get('/flags/:series', {
       }
     }
   }
-}, async (request, reply) => {
+}, async (request) => {
   const db = await database
 
-  await parseFlags(request.params.series)
+  if (request.query.fresh) {
+    await parseFlags(request.params.series)
+  }
 
   return db.collection('flags').aggregate([
     {
