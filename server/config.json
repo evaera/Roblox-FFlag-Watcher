@@ -3,6 +3,7 @@
 
   "series": [
     "ClientAppSettings",
+    "WindowsClientAppSettings",
     "MacClientAppSettings",
     "StudioAppSettings",
     "WindowsBootstrapperSettings",
