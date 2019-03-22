@@ -19,8 +19,6 @@ services:
     environment:
       - MONGO_DB=mongodb://mongo:27017
       - NODE_ENV=production
-    env_file:
-      - ../FFlagWatcher.env
 
 volumes:
   data-volume:
