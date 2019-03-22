@@ -36,12 +36,19 @@ app.get('/flags/:series', {
       $lookup: {
         from: 'history',
         as: 'lastUpdated',
-        let: { flag: '$flag' },
+        let: { flag: '$flag', series: '$series' },
         pipeline: [
           {
             $match: {
               $expr: {
                 $eq: [ '$flag', '$$flag' ]
+              }
+            }
+          },
+          {
+            $match: {
+              $expr: {
+                $eq: [ '$series', '$$series' ]
               }
             }
           },
