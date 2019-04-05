@@ -89,15 +89,10 @@ const stripUndefined = (obj: {[index: string]: any}) => {
 app.get('/events', async (req) => {
   const db = await database
 
-  const { series, flag } = req.query
-
   return db.collection('history').find(stripUndefined({
-    series: series,
-    flag: flag,
-    type: !flag ? {
-      $ne: HistoryEventType.TrackingBegan
-    } : undefined
-  })).sort({ time: -1 }).limit(flag ? 1000 : 100).toArray()
+    series: req.query.series,
+    flag: req.query.flag
+  })).sort({ time: -1 }).limit(100).toArray()
 })
 
 app.listen(8080, '0.0.0.0')
