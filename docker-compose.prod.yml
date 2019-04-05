@@ -1,6 +1,6 @@
 version: '3'
 
-services:
-  app:
-    env_file:
-      - ../FFlagWatcher.env
+# services:
+#   app:
+#     env_file:
+#       - ../FFlagWatcher.env
