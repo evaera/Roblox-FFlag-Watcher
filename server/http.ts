@@ -91,7 +91,8 @@ app.get('/events', async (req) => {
 
   return db.collection('history').find(stripUndefined({
     series: req.query.series,
-    flag: req.query.flag
+    flag: req.query.flag,
+    type: req.query.series ? undefined : { $ne: HistoryEventType.TrackingBegan }
   })).sort({ time: -1 }).limit(100).toArray()
 })
 
