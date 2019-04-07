@@ -7,17 +7,15 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 const endpoint = (str: string) => BASE_URL + str
 
 export const allSeries = [
-  'ClientAppSettings',
-  'WindowsClientAppSettings',
-  'MacClientAppSettings',
-  'StudioAppSettings',
-  'WindowsBootstrapperSettings',
-  'WindowsStudioBootstrapperSettings',
-  'MacBootstrapperSettings',
-  'MacStudioBootstrapperSettings',
-  'AndroidAppSettings',
-  'iOSAppSettings',
-  'XboxAppSettings'
+  'PCDesktopClient',
+  'MacDesktopClient',
+  'PCStudioBootstrapper',
+  'MacStudioBootstrapper',
+  'PCClientBootstrapper',
+  'MacClientBootstrapper',
+  'XboxClient',
+  'AndroidApp',
+  'iOSApp'
 ]
 
 export enum HistoryEventType {

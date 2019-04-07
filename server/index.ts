@@ -1,6 +1,13 @@
 import './http'
-// import './db'
-import { parseAllFlags } from './parser'
+import { parseAllFlags, migrateFlags } from './parser'
 
-setInterval(parseAllFlags, 5 * 60 * 1000)
-parseAllFlags()
+async function main () {
+  await migrateFlags()
+  await parseAllFlags()
+
+  setInterval(parseAllFlags, 5 * 60 * 1000)
+}
+
+main().catch(e => {
+  throw e
+})

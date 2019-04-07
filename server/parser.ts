@@ -40,10 +40,24 @@ export function parseAllFlags () {
   return Promise.all(config.series.map(series => parseFlags(series)))
 }
 
-export async function parseFlags (series: string) {
-  const request = await fetch(config.endpoint.replace('SERIES', series))
+export async function migrateFlags () {
+  const db = await database
+  return Promise.all(Object.entries(config.legacyMigrationTargets).map(async ([before, after]) => {
+    await db.collection('history').updateMany({ series: before }, { $set: { series: after } })
+    await db.collection('flags').updateMany({ series: before }, { $set: { series: after } })
+  }))
+}
 
-  const flags = await request.json() as Flags
+export async function parseFlags (series: string) {
+  const request = await fetch(config.endpoint + series)
+
+  const data = await request.json()
+
+  const flags = data.applicationSettings as Flags
+
+  if (!flags) {
+    throw new Error('applicationSettings is undefined')
+  }
 
   const db = await database
 

@@ -1,7 +1,19 @@
 {
-  "endpoint": "http://clientsettings.api.roblox.com/Setting/QuietGet/SERIES?apiKey=D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79",
+  "endpoint": "https://clientsettingscdn.roblox.com/v1/settings/application?applicationName=",
 
   "series": [
+    "PCDesktopClient",
+    "MacDesktopClient",
+    "PCStudioBootstrapper",
+    "MacStudioBootstrapper",
+    "PCClientBootstrapper",
+    "MacClientBootstrapper",
+    "XboxClient",
+    "AndroidApp",
+    "iOSApp"
+  ],
+
+  "legacySeries": [
     "ClientAppSettings",
     "WindowsClientAppSettings",
     "MacClientAppSettings",
@@ -13,5 +25,17 @@
     "AndroidAppSettings",
     "iOSAppSettings",
     "XboxAppSettings"
-  ]
+  ],
+
+  "legacyMigrationTargets": {
+    "ClientAppSettings": "PCDesktopClient",
+    "MacClientAppSettings": "MacDesktopClient",
+    "WindowsBootstrapperSettings": "PCClientBootstrapper",
+    "WindowsStudioBootstrapperSettings": "PCStudioBootstrapper",
+    "MacStudioBootstrapperSettings": "MacStudioBootstrapper",
+    "MacBootstrapperSettings": "MacClientBootstrapper",
+    "AndroidAppSettings": "AndroidApp",
+    "iOSAppSettings": "iOSApp",
+    "XboxAppSettings": "XboxClient"
+  }
 }
