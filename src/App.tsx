@@ -1,6 +1,6 @@
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import React, { Component } from 'react'
+import React, { Component, ComponentClass } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
@@ -25,7 +25,7 @@ export const theme = createMuiTheme({
 
 export interface Page {
   path: string,
-  component: (...args: any[]) => JSX.Element,
+  component: ((...args: any[]) => JSX.Element) | ComponentClass,
   title: string
   activePath?: string
 }

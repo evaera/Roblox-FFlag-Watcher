@@ -35,6 +35,7 @@ class Header extends Component<HeaderProps> {
               key={page.path}
             />
           ))}
+          <Tab label='Discord channel' onClick={() => window.open('https://discord.gg/7UGTwKs', '_blank')} />
         </Tabs>
       </AppBar>
     )
