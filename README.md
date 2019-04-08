@@ -1,5 +1,8 @@
 # Roblox FFlag Watcher
 
+<a href="https://discord.gg/7UGTwKs"><img src="https://img.shields.io/discord/425800792679645204.svg?label=discord" /></a>
+> Need help? Have a suggestion, comment, or problem? Join the [Discord server](https://discord.gg/7UGTwKs).
+
 This is a server/web app combo that watches for Roblox FFlag changes.
 
 ## Set-up guide
