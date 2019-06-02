@@ -15,7 +15,8 @@ export const allSeries = [
   'MacClientBootstrapper',
   'XboxClient',
   'AndroidApp',
-  'iOSApp'
+  'iOSApp',
+  'StudioApp'
 ]
 
 export enum HistoryEventType {

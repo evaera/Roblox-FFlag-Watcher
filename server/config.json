@@ -10,7 +10,8 @@
     "MacClientBootstrapper",
     "XboxClient",
     "AndroidApp",
-    "iOSApp"
+    "iOSApp",
+    "StudioApp"
   ],
 
   "legacySeries": [
