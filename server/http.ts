@@ -25,7 +25,7 @@ app.get('/flags/:series', {
     await parseFlags(request.params.series)
   }
 
-  reply.header('Cache-Control', 's-,axage=86400, max-age=86400')
+  reply.header('Cache-Control', 's-maxage=86400, max-age=86400')
 
   return db.collection('flags').aggregate([
     {
