@@ -18,12 +18,14 @@ app.get('/flags/:series', {
       }
     }
   }
-}, async (request) => {
+}, async (request, reply) => {
   const db = await database
 
   if (request.query.fresh) {
     await parseFlags(request.params.series)
   }
+
+  reply.header('Cache-Control', 's-,axage=86400, max-age=86400')
 
   return db.collection('flags').aggregate([
     {
