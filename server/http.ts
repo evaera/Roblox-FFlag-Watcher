@@ -23,9 +23,10 @@ app.get('/flags/:series', {
 
   if (request.query.fresh) {
     await parseFlags(request.params.series)
+    reply.header('Cache-Control', 'private')
+  } else {
+    reply.header('Cache-Control', 's-maxage=86400, max-age=86400')
   }
-
-  reply.header('Cache-Control', 's-maxage=86400, max-age=86400')
 
   return db.collection('flags').aggregate([
     {
@@ -88,8 +89,10 @@ const stripUndefined = (obj: {[index: string]: any}) => {
   return obj
 }
 
-app.get('/events', async (req) => {
+app.get('/events', async (req, reply) => {
   const db = await database
+
+  reply.header('Cache-Control', 'private')
 
   return db.collection('history').find(stripUndefined({
     series: req.query.series,
