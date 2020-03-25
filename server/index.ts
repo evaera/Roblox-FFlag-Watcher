@@ -1,6 +1,6 @@
 import { database } from "./db"
 import "./http"
-import { migrateFlags, parseAllFlags } from "./parser"
+import { parseAllFlags } from "./parser"
 
 async function main() {
   const db = await database
@@ -9,8 +9,6 @@ async function main() {
   await db.collection("history").createIndex({ time: -1 })
 
   await parseAllFlags()
-  await db.collection("history").deleteMany({ time: { $gt: 1585127258000 } })
-  await migrateFlags()
 
   setInterval(parseAllFlags, 5 * 60 * 1000)
 }
