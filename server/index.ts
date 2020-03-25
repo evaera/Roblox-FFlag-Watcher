@@ -4,6 +4,7 @@ import { migrateFlags, parseAllFlags } from "./parser"
 
 async function main() {
   const db = await database
+
   await db.collection("history").createIndex({ flag: 1, series: 1 })
   await db.collection("history").createIndex({ time: -1 })
 

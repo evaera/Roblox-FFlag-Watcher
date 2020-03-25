@@ -62,13 +62,13 @@ export function parseAllFlags() {
 
 export async function migrateFlags() {
   const db = await database
-  const cursor = await db.collection("flags").find()
+  const cursor = db.collection("flags").find()
 
   while (await cursor.hasNext()) {
     const row = await cursor.next()
 
     console.log(`Migrating ${row.series}/${row.flag}`)
-    const values = await db
+    const values = db
       .collection("history")
       .find({ flag: row.flag, series: row.series })
       .limit(1)
