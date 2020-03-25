@@ -62,9 +62,7 @@ export function parseAllFlags() {
 
 export async function migrateFlags() {
   const db = await database
-  const cursor = await db
-    .collection("flags")
-    .find({ lastUpdated: { $exists: false } })
+  const cursor = await db.collection("flags").find()
 
   while (await cursor.hasNext()) {
     const row = await cursor.next()
@@ -75,12 +73,12 @@ export async function migrateFlags() {
       .find({ flag: row.flag, series: row.series })
       .limit(1)
       .sort({ time: -1 })
-      .toArray()
-    if (values.length > 1) {
+
+    if (await values.hasNext()) {
       console.log("Writing back change")
       await db
         .collection("flags")
-        .update({ _id: row._id }, { lastUpdated: values[0].time })
+        .update({ _id: row._id }, { lastUpdated: (await values.next()).time })
     }
   }
 }
@@ -174,7 +172,9 @@ export async function parseFlags(series: string) {
       {
         $set: {
           currentValue: value,
-          lastUpdated: Date.now(),
+          ...(currentFlag?.currentValue !== value && {
+            lastUpdated: Date.now(),
+          }),
         },
       },
       {
