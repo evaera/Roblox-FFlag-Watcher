@@ -1,4 +1,4 @@
-import mongodb from 'mongodb'
+import mongodb from "mongodb"
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -9,7 +9,6 @@ export const database: Promise<mongodb.Db> = new Promise(async resolve => {
     if (err) {
       throw err
     }
-
-    resolve(client.db('FFlagObserver'))
+    resolve(client.db("FFlagObserver"))
   })
 })

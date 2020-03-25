@@ -1,7 +1,12 @@
-import './http'
-import { parseAllFlags, migrateFlags } from './parser'
+import { database } from "./db"
+import "./http"
+import { migrateFlags, parseAllFlags } from "./parser"
 
-async function main () {
+async function main() {
+  const db = await database
+  await db.collection("history").createIndex({ flag: 1, series: 1 })
+  await db.collection("history").createIndex({ time: -1 })
+
   await migrateFlags()
   await parseAllFlags()
 

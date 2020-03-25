@@ -21,7 +21,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-moment": "^0.8.4",
-    "react-router-dom": "^4.4.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.8",
     "tsc-watch": "^2.1.2",
     "tslint": "^5.14.0",
