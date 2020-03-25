@@ -78,7 +78,10 @@ export async function migrateFlags() {
       console.log("Writing back change")
       await db
         .collection("flags")
-        .update({ _id: row._id }, { lastUpdated: (await values.next()).time })
+        .update(
+          { flag: row.flag, series: row.series },
+          { $set: { lastUpdated: (await values.next()).time } }
+        )
     }
   }
 }

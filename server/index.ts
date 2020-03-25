@@ -8,8 +8,9 @@ async function main() {
   await db.collection("history").createIndex({ flag: 1, series: 1 })
   await db.collection("history").createIndex({ time: -1 })
 
-  await migrateFlags()
   await parseAllFlags()
+  await db.collection("history").deleteMany({ time: { $gt: 1585127258000 } })
+  await migrateFlags()
 
   setInterval(parseAllFlags, 5 * 60 * 1000)
 }
