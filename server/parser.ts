@@ -167,19 +167,19 @@ export async function parseFlags(series: string) {
       })
     }
 
-    await db.collection("flags").updateOne(
-      { flag, series },
-      {
-        $set: {
-          currentValue: value,
-          ...(currentFlag?.currentValue !== value && {
+    if (currentFlag?.currentValue !== value) {
+      await db.collection("flags").updateOne(
+        { flag, series },
+        {
+          $set: {
+            currentValue: value,
             lastUpdated: Date.now(),
-          }),
+          },
         },
-      },
-      {
-        upsert: true,
-      }
-    )
+        {
+          upsert: true,
+        }
+      )
+    }
   }
 }
