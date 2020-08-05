@@ -10,7 +10,7 @@
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
     "fast-memoize": "^2.5.1",
-    "fastify": "^2.1.0",
+    "fastify": "^2.15.1",
     "fastify-cors": "^2.1.2",
     "gh-pages": "^2.0.1",
     "moment": "^2.24.0",
