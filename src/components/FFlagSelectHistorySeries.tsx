@@ -23,7 +23,7 @@ export default function FFlagSelectHistorySeries(props: any) {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        View Specific Series
+        View Specific Bucket
       </Button>
       <Menu
         id="simple-menu"

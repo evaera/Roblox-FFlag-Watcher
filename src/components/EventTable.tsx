@@ -35,7 +35,7 @@ const columns = (single: boolean) => [
     },
   },
   {
-    name: "Series",
+    name: "Bucket",
     options: {
       display: !single,
       customBodyRender: (series: string) =>
