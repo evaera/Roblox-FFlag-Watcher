@@ -1,6 +1,5 @@
 {
   "endpoint": "https://clientsettingscdn.roblox.com/v1/settings/application?applicationName=",
-
   "series": [
     "PCDesktopClient",
     "MacDesktopClient",
@@ -11,9 +10,10 @@
     "XboxClient",
     "AndroidApp",
     "iOSApp",
-    "StudioApp"
+    "StudioApp",
+    "UWPApp",
+    "PCDesktopClientCJV"
   ],
-
   "legacySeries": [
     "ClientAppSettings",
     "WindowsClientAppSettings",
@@ -27,7 +27,6 @@
     "iOSAppSettings",
     "XboxAppSettings"
   ],
-
   "legacyMigrationTargets": {
     "ClientAppSettings": "PCDesktopClient",
     "MacClientAppSettings": "MacDesktopClient",

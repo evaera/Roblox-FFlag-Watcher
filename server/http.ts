@@ -73,7 +73,7 @@ app.get("/events", async (req, reply) => {
           : { $ne: HistoryEventType.TrackingBegan },
       })
     )
-    .limit(100)
+    .limit(1000)
     .sort({ time: -1 })
     .toArray()
 })
@@ -81,4 +81,4 @@ app.get("/events", async (req, reply) => {
 app
   .listen(8080, "0.0.0.0")
   .then(() => console.log("FFlag observer server started"))
-  .catch(e => console.error(e))
+  .catch((e) => console.error(e))

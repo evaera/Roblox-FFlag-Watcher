@@ -41,7 +41,7 @@ const getFirstEvent = memoize(
 )
 
 export function parseAllFlags() {
-  return Promise.all(config.series.map(series => parseFlags(series)))
+  return Promise.all(config.series.map((series) => parseFlags(series)))
 }
 
 // export async function migrateFlags() {
@@ -99,6 +99,8 @@ export async function parseFlags(series: string) {
 
   const db = await database
 
+  const hasAnyOfSeries = (await db.collection("history").count({ series })) > 0
+
   const removeCursor = await db
     .collection("flags")
     .find({ currentValue: { $exists: true }, series })
@@ -141,7 +143,9 @@ export async function parseFlags(series: string) {
         flag,
         value,
         time: Date.now(),
-        type: HistoryEventType.Created,
+        type: hasAnyOfSeries
+          ? HistoryEventType.Created
+          : HistoryEventType.TrackingBegan,
       })
     } else if (currentFlag.currentValue !== value) {
       await db.collection("history").insertOne({
@@ -150,23 +154,6 @@ export async function parseFlags(series: string) {
         value,
         time: Date.now(),
         type: HistoryEventType.Changed,
-      })
-    }
-
-    if (
-      process.env.RETROACTIVE_TRACKING &&
-      (await db
-        .collection("history")
-        .find({ flag, series })
-        .count()) === 0
-    ) {
-      const firstEvent = await getFirstEvent()
-      await db.collection("history").insertOne({
-        series,
-        flag,
-        value,
-        time: firstEvent ? firstEvent.time : Date.now(),
-        type: HistoryEventType.TrackingBegan,
       })
     }
 

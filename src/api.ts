@@ -16,6 +16,8 @@ export const allSeries = [
   "AndroidApp",
   "iOSApp",
   "StudioApp",
+  "UWPApp",
+  "PCDesktopClientCJV",
 ]
 
 export enum HistoryEventType {
@@ -89,6 +91,8 @@ export async function getHistory(
       ) {
         i = j + 1
         currentEvent.series += `\n${nextEvent.series}`
+      } else {
+        break
       }
     }
 
