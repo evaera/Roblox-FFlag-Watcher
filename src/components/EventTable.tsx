@@ -8,12 +8,12 @@ import React, { Component } from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { getHistory, HistoryEvent } from '../api'
+import { getFlagType } from '../Util'
+import styles from './EventTable.module.scss'
 import FFlagTextLink from './FFlagTextLink'
+import FFlagTypeChip from './FFlagTypeChip'
 import LifecycleChip from './LifecycleChip'
 import Utterances from './Utterances'
-import styles from './EventTable.module.scss'
-import FFlagTypeChip from './FFlagTypeChip'
-import { getFlagType } from '../Util'
 
 interface EventTableProps {
   series?: string
@@ -156,7 +156,7 @@ export default class EventTable extends Component<EventTableProps, EventTableSta
                   event.time
                 ])}
                 options={{
-                  selectableRows: false,
+                  selectableRows: "none",
                   sort: false,
                   print: false,
                   rowsPerPage: 100

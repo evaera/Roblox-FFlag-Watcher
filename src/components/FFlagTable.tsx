@@ -98,7 +98,7 @@ export default class FFlagTable extends Component<FFlagTableProps & FFlagDataCal
         })}
         columns={columns(this.props) as any}
         options={{
-          selectableRows: false,
+          selectableRows: "none",
           rowsPerPage: 30,
           rowsPerPageOptions: [10, 30, 50, 100, 300, 500, 1000, Infinity],
           print: false,
