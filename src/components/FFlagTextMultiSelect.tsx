@@ -3,6 +3,7 @@ import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 import React from "react"
 import { Link as RouterLink } from "react-router-dom"
+import { getFlagType } from "../Util"
 
 interface FFlagTextMutliSelectProps {
   series: string[]
@@ -35,7 +36,7 @@ export default function FFlagTextMultiSelect(props: FFlagTextMutliSelectProps) {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        {props.flag}
+        {getFlagType(props.flag).name}
       </Link>
       <Menu
         id="simple-menu"
