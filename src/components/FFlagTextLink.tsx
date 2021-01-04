@@ -1,20 +1,20 @@
-import Link from '@material-ui/core/Link'
-import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
-import { getFlagType } from '../Util'
+import Link from "@material-ui/core/Link"
+import React from "react"
+import { Link as RouterLink } from "react-router-dom"
+import { getFlagType } from "../Util"
 
-export default function FFlagTextLink (flag: string, series: string) {
+export default function FFlagTextLink(flag: string, series: string) {
   return (
     <Link
-      component={
-        (p: any) => <RouterLink to={`/history/${series}/${flag}`} {...p} />
-      }
-      color='inherit'
-      underline='none'
+      component={React.forwardRef((p: any, ref) => (
+        <RouterLink to={`/history/${series}/${flag}`} {...p} ref={ref} />
+      ))}
+      color="inherit"
+      underline="none"
       style={{
         fontSize: 14,
-        borderBottom: '1px dotted silver',
-        wordWrap: 'break-word'
+        borderBottom: "1px dotted silver",
+        wordWrap: "break-word",
       }}
     >
       {getFlagType(flag).name}

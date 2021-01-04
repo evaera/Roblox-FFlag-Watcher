@@ -48,7 +48,8 @@ export default function FFlagTextMultiSelect(props: FFlagTextMutliSelectProps) {
         {props.series.map((series) => (
           <MenuItem
             onClick={handleClose}
-            component={(p: any) => (
+            key={series}
+            component={React.forwardRef((p: any, ref) => (
               <RouterLink
                 style={{
                   color: "inherit",
@@ -57,7 +58,7 @@ export default function FFlagTextMultiSelect(props: FFlagTextMutliSelectProps) {
                 to={`/history/${series}/${props.flag}`}
                 {...p}
               />
-            )}
+            ))}
           >
             {series}
           </MenuItem>
