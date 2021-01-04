@@ -4,13 +4,12 @@ import React, { Component, ComponentClass } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
+import About from './pages/About'
 import Browser from './pages/Browser'
 import History from './pages/History'
-import About from './pages/About'
 
 export const theme = createMuiTheme({
   typography: {
-    useNextVariants: true
   },
   palette: {
     type: 'dark',

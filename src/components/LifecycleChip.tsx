@@ -1,6 +1,5 @@
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import { Color, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import Chip from '@material-ui/core/Chip'
-import blue from '@material-ui/core/colors/blue'
 import green from '@material-ui/core/colors/green'
 import red from '@material-ui/core/colors/red'
 import yellow from '@material-ui/core/colors/yellow'
@@ -10,7 +9,7 @@ import Remove from '@material-ui/icons/Remove'
 import memoize from 'fast-memoize'
 import React from 'react'
 
-const typeStyles: [string, typeof blue, JSX.Element][] = [
+const typeStyles: [string, Color, JSX.Element][] = [
   ['Created', green, <Add />],
   ['Changed', yellow, <Edit />],
   ['Removed', red, <Remove />]

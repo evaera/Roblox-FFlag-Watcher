@@ -114,7 +114,7 @@ export default class FFlagTable extends Component<FFlagTableProps & FFlagDataCal
                 <InputLabel htmlFor='series'>Platform/Application</InputLabel>
                 <Select
                   value={this.props.series}
-                  onChange={(e) => this.props.setSeries(e.target.value)}
+                  onChange={(e) => this.props.setSeries(e.target.value as string)}
                   input={
                     <Input name='series' id='series' />
                   }

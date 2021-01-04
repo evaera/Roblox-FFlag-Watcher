@@ -124,7 +124,6 @@ export default class EventTable extends Component<EventTableProps, EventTableSta
             </Link>
             <Typography
               variant='h5'
-              inline={true}
               style={{
                 verticalAlign: 'middle',
                 marginLeft: 10

@@ -1,20 +1,20 @@
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
-import Chip from '@material-ui/core/Chip'
-import blue from '@material-ui/core/colors/blue'
-import deepOrange from '@material-ui/core/colors/deepOrange'
-import indigo from '@material-ui/core/colors/indigo'
-import red from '@material-ui/core/colors/red'
-import teal from '@material-ui/core/colors/teal'
-import Sync from '@material-ui/icons/Sync'
-import List from '@material-ui/icons/List'
-import LooksOne from '@material-ui/icons/LooksOne'
-import SettingsRemote from '@material-ui/icons/SettingsRemote'
-import TextFormat from '@material-ui/icons/TextFormat'
-import Flag from '@material-ui/icons/Flag'
-import React from 'react'
-import memoize from 'fast-memoize'
+import { Color, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
+import blue from '@material-ui/core/colors/blue';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import indigo from '@material-ui/core/colors/indigo';
+import red from '@material-ui/core/colors/red';
+import teal from '@material-ui/core/colors/teal';
+import Flag from '@material-ui/icons/Flag';
+import List from '@material-ui/icons/List';
+import LooksOne from '@material-ui/icons/LooksOne';
+import SettingsRemote from '@material-ui/icons/SettingsRemote';
+import Sync from '@material-ui/icons/Sync';
+import TextFormat from '@material-ui/icons/TextFormat';
+import memoize from 'fast-memoize';
+import React from 'react';
 
-const typeStyles: [string, typeof blue, JSX.Element][] = [
+const typeStyles: [string, Color, JSX.Element][] = [
   ['Dynamic Int', red, <LooksOne />],
   ['Dynamic String', red, <TextFormat />],
   ['Dynamic Log', red, <List />],
@@ -48,6 +48,7 @@ export default function FFlagTypeChip (type: string) {
         label={type}
         color='primary'
         icon={getIcon(type)}
+
       />
     </MuiThemeProvider>
   : ''

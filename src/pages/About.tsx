@@ -1,11 +1,11 @@
+import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import React from 'react'
-import styles from './About.module.scss'
 import FFlagTypeChip from '../components/FFlagTypeChip'
+import styles from './About.module.scss'
 
 function Section ({ title, paragraphs, variant }: {title: string, paragraphs: (string | JSX.Element)[], variant?: 'h4' | 'h5'}) {
   return (
@@ -33,18 +33,18 @@ export default function About () {
           padding: 40
         }}>
           <Typography variant='h3'>Roblox FFlag Watcher</Typography>
-          <Typography variant='subheading'>By <Link href='https://eryn.io'>evaera</Link></Typography>
+          <Typography variant='subtitle1'>By <Link href='https://eryn.io'>evaera</Link></Typography>
 
-          <Grid container justify='center' alignContent='center' spacing={16}>
+          <Grid container justify='center' alignContent='center' spacing={10}>
             <Grid item xs={6} style={{
               textAlign: 'right'
             }}>
-              <Button variant='raised' color='primary' href='https://github.com/evaera/Roblox-FFlag-Watcher'>GitHub Repository</Button>
+              <Button variant='contained' color='primary' href='https://github.com/evaera/Roblox-FFlag-Watcher'>GitHub Repository</Button>
             </Grid>
             <Grid item xs={6} style={{
               textAlign: 'left'
             }}>
-              <Button variant='raised' color='secondary' href='https://www.patreon.com/erynlynn'>Support on Patreon</Button>
+              <Button variant='contained' color='secondary' href='https://www.patreon.com/erynlynn'>Support on Patreon</Button>
             </Grid>
           </Grid>
 
