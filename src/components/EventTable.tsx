@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 import { getHistory, HistoryEvent } from "../api"
 import { getFlagType } from "../Util"
 import styles from "./EventTable.module.scss"
+import FFlagSelectHistorySeries from "./FFlagSelectHistorySeries"
 import FFlagSeriesLink from "./FFlagSeriesLink"
 import FFlagTextLink from "./FFlagTextLink"
 import FFlagTextMultiSelect from "./FFlagTextMultiSelect"
@@ -151,6 +152,7 @@ export default class EventTable extends React.Component<
               style={{
                 verticalAlign: "middle",
                 marginLeft: 10,
+                display: "inline-block",
               }}
             >
               {`${this.props.flag || this.props.series} `}
@@ -186,6 +188,7 @@ export default class EventTable extends React.Component<
                   sort: false,
                   print: false,
                   rowsPerPage: 100,
+                  customToolbar: () => <FFlagSelectHistorySeries />,
                 }}
               />
             ) : (
