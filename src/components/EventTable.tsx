@@ -4,13 +4,15 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 import BackIcon from '@material-ui/icons/ArrowBack'
 import MUIDataTable from 'mui-datatables'
-import React, { Component } from 'react'
+import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { getHistory, HistoryEvent } from '../api'
 import { getFlagType } from '../Util'
 import styles from './EventTable.module.scss'
+import FFlagSeriesLink from './FFlagSeriesLink'
 import FFlagTextLink from './FFlagTextLink'
+import FFlagTextMultiSelect from './FFlagTextMultiSelect'
 import FFlagTypeChip from './FFlagTypeChip'
 import LifecycleChip from './LifecycleChip'
 import Utterances from './Utterances'
@@ -34,7 +36,10 @@ const columns = (single: boolean) => [
   {
     name: 'Series',
     options: {
-      display: !single
+      display: !single,
+      customBodyRender: (series: string) => (
+        series.split('\n').map(name => FFlagSeriesLink(name)).reduce((prev, element) => [prev, <br />, element] as any)
+      )
     }
   },
   {
@@ -49,9 +54,15 @@ const columns = (single: boolean) => [
     name: 'Flag',
     options: {
       display: !single,
-      customBodyRender: (flag: string, meta: any) => (
-        FFlagTextLink(flag, meta.rowData[1])
-      ),
+      customBodyRender: (flag: string, meta: any) => {
+        const series = meta.rowData[1].split('\n')
+
+        if (series.length === 1) {
+          return FFlagTextLink(flag, series[0])
+        } else {
+          return <FFlagTextMultiSelect series={series} flag={flag} />
+        }
+      },
       download: false
     }
   },
@@ -87,7 +98,7 @@ const columns = (single: boolean) => [
   }
 ]
 
-export default class EventTable extends Component<EventTableProps, EventTableState> {
+export default class EventTable extends React.Component<EventTableProps, EventTableState> {
   constructor (props: EventTableProps) {
     super(props)
 
