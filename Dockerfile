@@ -6,8 +6,8 @@ RUN chown appuser:appuser -R .
 EXPOSE 8080
 USER appuser
 COPY package.json ./
-COPY yarn.lock ./
-RUN yarn install
+COPY package-lock.json ./
+RUN npm install
 COPY server ./server
-RUN yarn server:build
-ENTRYPOINT ["yarn", "server:start"]
+RUN npm run server:build
+ENTRYPOINT ["npm", "run", "server:start"]

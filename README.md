@@ -9,11 +9,10 @@ This is a server/web app combo that watches for Roblox FFlag changes.
 
 ### Requirements
 - [Docker](https://www.docker.com/)
-- [Yarn](https://yarnpkg.com/en/)
 
 ### Development
 
-- `yarn start` to start development environment for the web app.
-- `yarn server:dev` to start development environment for the server.
+- `npm start` to start development environment for the web app.
+- `npm run server:dev` to start development environment for the server.
 
 Run both of these in separate consoles to work with them in tandem.
