@@ -113,7 +113,7 @@ export default class EventTable extends Component<EventTableProps, EventTableSta
       <React.Fragment>
         {this.props.series && (
           <div style={{
-            padding:  20
+            padding: 20
           }}>
             <Link
               to='/history'

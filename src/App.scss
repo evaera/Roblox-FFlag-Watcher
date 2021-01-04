@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 960px) {
+  .MuiTableCell-root {
+    padding: 16px 0 !important;
+
+    & > div:first-of-type {
+      padding-left: 16px;
+    }
+  }
+}
