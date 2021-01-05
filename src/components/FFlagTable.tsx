@@ -13,8 +13,10 @@ import Moment from "react-moment"
 import { allSeries, Flag } from "../api"
 import { getFlagType } from "../Util"
 import { FFlagDataCallbacks } from "./FFlagData"
+import FFlagRichValue from "./FFlagRichValue"
 import FFlagTextLink from "./FFlagTextLink"
 import FFlagTypeChip from "./FFlagTypeChip"
+import FFlagRichValueRaw from "./rich-values/FFlagRichValueRaw"
 
 export interface FFlagTableProps {
   flags: Flag[]
@@ -46,22 +48,19 @@ const columns = (props: FFlagTableProps) => [
     },
   },
   {
+    name: "Preview",
+    options: {
+      customBodyRender: (value: string, meta: any) => (
+        <FFlagRichValue value={value} flag={meta.rowData[1]} />
+      ),
+    },
+  },
+  {
     name: "Value",
     options: {
-      customBodyRender: (value: string) => (
-        <Typography
-          noWrap={true}
-          style={{
-            fontFamily: "monospace",
-            fontSize: 14,
-            whiteSpace: "pre-wrap",
-            wordBreak: "break-all",
-          }}
-        >
-          {value}
-        </Typography>
-      ),
+      customBodyRender: (value: string) => <FFlagRichValueRaw value={value} />,
       filterOptions: ["True", "False"],
+      display: true,
     },
   },
   {
@@ -104,6 +103,7 @@ export default class FFlagTable extends Component<
             type || "",
             flag.flag,
             flag.flag,
+            flag.currentValue || "",
             flag.currentValue || "",
             flag.lastUpdated ? new Date(flag.lastUpdated).toISOString() : "",
           ]

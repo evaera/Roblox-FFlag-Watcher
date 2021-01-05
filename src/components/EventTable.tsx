@@ -10,12 +10,14 @@ import { Link } from "react-router-dom"
 import { getHistory, HistoryEvent } from "../api"
 import { getFlagType } from "../Util"
 import styles from "./EventTable.module.scss"
+import FFlagRichValue from "./FFlagRichValue"
 import FFlagSelectHistorySeries from "./FFlagSelectHistorySeries"
 import FFlagSeriesLink from "./FFlagSeriesLink"
 import FFlagTextLink from "./FFlagTextLink"
 import FFlagTextMultiSelect from "./FFlagTextMultiSelect"
 import FFlagTypeChip from "./FFlagTypeChip"
 import LifecycleChip from "./LifecycleChip"
+import FFlagRichValueRaw from "./rich-values/FFlagRichValueRaw"
 import Utterances from "./Utterances"
 
 interface EventTableProps {
@@ -76,22 +78,19 @@ const columns = (single: boolean) => [
     },
   },
   {
+    name: "Preview",
+    options: {
+      customBodyRender: (value: string, meta: any) => (
+        <FFlagRichValue value={value} flag={meta.rowData[4]} />
+      ),
+    },
+  },
+  {
     name: "Value",
     options: {
-      customBodyRender: (value: string) => (
-        <Typography
-          noWrap={true}
-          style={{
-            fontFamily: "monospace",
-            fontSize: 14,
-            whiteSpace: "pre-wrap",
-            wordBreak: "break-all",
-          }}
-        >
-          {value}
-        </Typography>
-      ),
+      customBodyRender: (value: string) => <FFlagRichValueRaw value={value} />,
       filterOptions: ["True", "False"],
+      display: true,
     },
   },
   {
@@ -180,6 +179,7 @@ export default class EventTable extends React.Component<
                   getFlagType(event.flag).type,
                   event.flag,
                   event.flag,
+                  event.value || "",
                   event.value || "",
                   event.time,
                 ])}

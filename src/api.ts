@@ -101,3 +101,19 @@ export async function getHistory(
 
   return mergedEventHistory
 }
+
+async function fetchCors(url: string, options?: any) {
+  return fetch(`https://cors.eryn.io/${encodeURIComponent(url)}`, options)
+}
+
+export async function getRobloxGameInfo(placeId: number) {
+  return (
+    await fetchCors(
+      `https://api.roblox.com/marketplace/productinfo?assetId=${placeId}`
+    )
+  ).json()
+}
+
+export async function getRobloxUserInfo(userId: number) {
+  return (await fetchCors(`https://api.roblox.com/users/${userId}`)).json()
+}
