@@ -33,12 +33,15 @@ export default function FFlagSelectHistorySeries(props: any) {
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        {allSeries.map((series) => (
+        {allSeries.sort().map((series) => (
           <MenuItem
             onClick={handleClose}
             key={series}
             component={React.forwardRef((p: any, ref) => (
-              <RouterLink to={`/history/${series}`} {...p} />
+              <RouterLink
+                to={`/history/${series}${props.flag ? `/${props.flag}` : ""}`}
+                {...p}
+              />
             ))}
           >
             {series}

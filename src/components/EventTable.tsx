@@ -188,7 +188,9 @@ export default class EventTable extends React.Component<
                   sort: false,
                   print: false,
                   rowsPerPage: 100,
-                  customToolbar: () => <FFlagSelectHistorySeries />,
+                  customToolbar: () => (
+                    <FFlagSelectHistorySeries flag={this.props.flag} />
+                  ),
                 }}
               />
             ) : (

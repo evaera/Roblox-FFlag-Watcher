@@ -46,7 +46,7 @@ export default function FFlagTextMultiSelect(props: FFlagTextMutliSelectProps) {
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        {props.series.map((series) => (
+        {props.series.sort().map((series) => (
           <MenuItem
             onClick={handleClose}
             key={series}

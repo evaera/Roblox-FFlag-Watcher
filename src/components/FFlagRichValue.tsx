@@ -46,7 +46,7 @@ const specialPreviews: {
         return filterTypeMap[filterType](filterValues)
       }
     },
-    changeValue: (value, match) => value.split(";")[0],
+    changeValue: (value) => value.split(";")[0],
   },
   {
     pattern: /^D?FString.*UserIds$/,
