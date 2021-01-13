@@ -106,14 +106,27 @@ async function fetchCors(url: string, options?: any) {
   return fetch(`https://cors.eryn.io/${encodeURIComponent(url)}`, options)
 }
 
+const gameInfoCache: { [index: number]: Promise<any> } = {}
+
 export async function getRobloxGameInfo(placeId: number) {
-  return (
+  if (gameInfoCache[placeId]) {
+    return gameInfoCache[placeId]
+  }
+
+  return (gameInfoCache[placeId] = (
     await fetchCors(
       `https://api.roblox.com/marketplace/productinfo?assetId=${placeId}`
     )
-  ).json()
+  ).json())
 }
 
+const robloxUserInfoCache: { [index: number]: Promise<any> } = {}
 export async function getRobloxUserInfo(userId: number) {
-  return (await fetchCors(`https://api.roblox.com/users/${userId}`)).json()
+  if (robloxUserInfoCache[userId]) {
+    return robloxUserInfoCache[userId]
+  }
+
+  return (robloxUserInfoCache[userId] = (
+    await fetchCors(`https://api.roblox.com/users/${userId}`)
+  ).json())
 }
