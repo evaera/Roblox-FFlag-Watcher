@@ -21,7 +21,7 @@ export default function FFlagRichValuePlace(props: { placeId: number }) {
         target="_blank"
       >
         <img
-          src={`https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid=${props.placeId}&fmt=png&wd=420&ht=420`}
+          src={`https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=${props.placeId}`}
           height={32}
           style={{
             borderRadius: "6px",
