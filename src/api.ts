@@ -120,6 +120,20 @@ export async function getRobloxGameInfo(placeId: number) {
   ).json())
 }
 
+const thumbnailInfoCache: { [index: number]: Promise<any> } = {}
+
+export async function getThumbnail(assetId: number) {
+  if (thumbnailInfoCache[assetId]) {
+    return thumbnailInfoCache[assetId]
+  }
+
+  return (thumbnailInfoCache[assetId] = (
+    await fetchCors(
+      `https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&format=Png&size=420x420`
+    )
+  ).json())
+}
+
 const robloxUserInfoCache: { [index: number]: Promise<any> } = {}
 export async function getRobloxUserInfo(userId: number) {
   if (robloxUserInfoCache[userId]) {
