@@ -18,7 +18,7 @@ export default function FFlagRichValueUser({ userId }: { userId: number }) {
         target="_blank"
       >
         <img
-          src={`https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png`}
+          src={`https://roblox-avatar.eryn.io/${userId}`}
           height={32}
           style={{
             borderRadius: "100%",
