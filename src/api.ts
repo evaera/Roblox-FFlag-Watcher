@@ -127,6 +127,6 @@ export async function getRobloxUserInfo(userId: number) {
   }
 
   return (robloxUserInfoCache[userId] = (
-    await fetchCors(`https://api.roblox.com/users/${userId}`)
+    await fetchCors(`https://users.roblox.com/v1/users/${userId}`)
   ).json())
 }
