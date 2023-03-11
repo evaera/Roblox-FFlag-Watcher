@@ -29,7 +29,7 @@ export default function FFlagRichValuePlace(props: { placeId: number }) {
         target="_blank"
       >
         <img
-          src={}
+          src={thumbnail}
           height={32}
           style={{
             borderRadius: "6px",
