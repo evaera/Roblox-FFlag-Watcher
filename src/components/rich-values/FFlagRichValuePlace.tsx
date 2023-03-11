@@ -10,7 +10,13 @@ export default function FFlagRichValuePlace(props: { placeId: number }) {
     },
   })
 
-  const [thumbnailData, setThumbnailData] = useState("")
+  const [thumbnailData, setThumbnailData] = useState({
+    data: [
+      {
+        imageUrl: ""
+      }
+    ]
+  })
 
   useEffect(() => {
     getRobloxGameInfo(props.placeId).then(setPlaceData).catch(console.warn)
