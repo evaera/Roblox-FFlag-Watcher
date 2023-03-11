@@ -1,5 +1,5 @@
 {
-  "endpoint": "https://clientsettingscdn.roblox.com/v1/settings/application?applicationName=",
+  "endpoint": "https://clientsettingscdn.roblox.com/v2/settings/application/",
   "series": [
     "PCDesktopClient",
     "MacDesktopClient",
