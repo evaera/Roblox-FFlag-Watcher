@@ -115,7 +115,7 @@ export async function getRobloxGameInfo(placeId: number) {
 
   return (gameInfoCache[placeId] = (
     await fetchCors(
-      `https://api.roblox.com/marketplace/productinfo?assetId=${placeId}`
+      `https://economy.roblox.com/v2/assets/${placeId}/details`
     )
   ).json())
 }
