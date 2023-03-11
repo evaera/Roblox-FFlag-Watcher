@@ -1,6 +1,6 @@
 import Tooltip from "@material-ui/core/Tooltip"
 import React, { useEffect, useState } from "react"
-import { fetchCors, getRobloxGameInfo } from "../../api"
+import { fetchCors, getRobloxGameInfo, getThumbnail } from "../../api"
 
 export default function FFlagRichValuePlace(props: { placeId: number }) {
   const [placeData, setPlaceData] = useState({
@@ -10,16 +10,11 @@ export default function FFlagRichValuePlace(props: { placeId: number }) {
     },
   })
 
-  const [thumbnail, setThumbnail] = useState("")
+  const [thumbnailData, setThumbnailData] = useState("")
 
   useEffect(() => {
     getRobloxGameInfo(props.placeId).then(setPlaceData).catch(console.warn)
-    fetchCors(
-      `https://thumbnails.roblox.com/v1/assets?assetIds=${props.placeId}&format=Png&size=420x420`
-    )
-      .then(resp => resp.json())
-      .then(body => setThumbnail(body.data?.at(0).imageUrl))
-      .catch(console.warn)
+    getThumbnail(props.placeId).then(setThumbnailData).catch(console.warn)
   }, [props.placeId])
 
   return (
@@ -29,7 +24,7 @@ export default function FFlagRichValuePlace(props: { placeId: number }) {
         target="_blank"
       >
         <img
-          src={thumbnail}
+          src={thumbnail.data?.at(0).imageUrl}
           height={32}
           style={{
             borderRadius: "6px",
