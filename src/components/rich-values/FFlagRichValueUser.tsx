@@ -4,7 +4,7 @@ import { getRobloxUserInfo } from "../../api"
 
 export default function FFlagRichValueUser({ userId }: { userId: number }) {
   const [userData, setUserData] = useState({
-    Username: "Loading...",
+    name: "Loading...",
   })
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function FFlagRichValueUser({ userId }: { userId: number }) {
   }, [userId])
 
   return (
-    <Tooltip title={userData.Username}>
+    <Tooltip title={userData.name}>
       <a
         href={`https://www.roblox.com/users/${userId}/profile`}
         target="_blank"
