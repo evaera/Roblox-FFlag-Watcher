@@ -1,6 +1,6 @@
 import Tooltip from "@material-ui/core/Tooltip"
 import React, { useEffect, useState } from "react"
-import { fetchCors, getRobloxGameInfo, getThumbnail } from "../../api"
+import { getRobloxGameInfo, getThumbnail } from "../../api"
 
 export default function FFlagRichValuePlace(props: { placeId: number }) {
   const [placeData, setPlaceData] = useState({
