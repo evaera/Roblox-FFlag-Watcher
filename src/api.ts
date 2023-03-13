@@ -115,7 +115,21 @@ export async function getRobloxGameInfo(placeId: number) {
 
   return (gameInfoCache[placeId] = (
     await fetchCors(
-      `https://api.roblox.com/marketplace/productinfo?assetId=${placeId}`
+      `https://economy.roblox.com/v2/assets/${placeId}/details`
+    )
+  ).json())
+}
+
+const thumbnailInfoCache: { [index: number]: Promise<any> } = {}
+
+export async function getThumbnail(assetId: number) {
+  if (thumbnailInfoCache[assetId]) {
+    return thumbnailInfoCache[assetId]
+  }
+
+  return (thumbnailInfoCache[assetId] = (
+    await fetchCors(
+      `https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&format=Png&size=420x420`
     )
   ).json())
 }
@@ -127,6 +141,6 @@ export async function getRobloxUserInfo(userId: number) {
   }
 
   return (robloxUserInfoCache[userId] = (
-    await fetchCors(`https://api.roblox.com/users/${userId}`)
+    await fetchCors(`https://users.roblox.com/v1/users/${userId}`)
   ).json())
 }
