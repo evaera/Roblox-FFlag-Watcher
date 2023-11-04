@@ -1,11 +1,23 @@
 # Roblox FFlag Watcher
 
-<a href="https://discord.gg/7UGTwKs"><img src="https://img.shields.io/discord/425800792679645204.svg?label=discord" /></a>
-> Need help? Have a suggestion, comment, or problem? Join the [Discord server](https://discord.gg/7UGTwKs).
+This project has been retired.
 
-This is a server/web app combo that watches for Roblox FFlag changes.
+This repository is open source, and you are free to host it yourself or modify it as you wish.
+
+As an alternative, you can use [MaximumADHD/Roblox-FFlag-Tracker](https://github.com/MaximumADHD/Roblox-FFlag-Tracker) which tracks flags via git.
+
+All data that was previously served by this website is available in JSON format:
+
+- flags.json
+- history.json
+
+[Download FFlagWatcherData.zip](https://github.com/evaera/Roblox-FFlag-Watcher/blob/master/docs/FFlagWatcherData.zip)
+
+Data was collected on November 14, 2023 at 4:17 PM Eastern Time.
 
 ## Set-up guide
+
+This is a server/web app combo that watches for Roblox FFlag changes.
 
 ### Requirements
 - [Docker](https://www.docker.com/)
