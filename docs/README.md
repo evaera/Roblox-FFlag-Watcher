@@ -11,4 +11,4 @@ All data that was previously served by this website is available in JSON format:
 
 [Download FFlagWatcherData.zip](/FFlagWatcherData.zip)
 
-Data was collected on November 14, 2023 at 4:17 PM Eastern Time.
+Data was collected on November 4, 2023 at 4:17 PM Eastern Time.
